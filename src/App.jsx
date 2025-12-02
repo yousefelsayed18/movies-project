@@ -7,7 +7,6 @@ import Layout from "./Components/Layout/Layout";
 import Movielist from "./Components/Movielist/Movielist";
 import Moviedetailes from "./Components/Moviedetails/Moviedetailes";
 import MoviescontextProvider from "./Contexts/Moviescontext";
-import 'flowbite';
 function App() {
   const [count, setCount] = useState(0);
 

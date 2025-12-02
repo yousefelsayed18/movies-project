@@ -4,19 +4,27 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Moviedetailes() {
+  const [moviesCast, setmoviesCast] = useState([]);
   const [movie, setmovie] = useState([]);
   const params = useParams();
-  console.log(params.id);
+  // MovieDettailes
   async function getMovieDetails() {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/movie/${params.id}?api_key=ff0709cbbd6905ad7bfb14c0730e0007&language=ar`
     );
-    console.log(data);
-
     setmovie(data);
+  }
+  // movieCast
+  async function getCast() {
+    let { data } = await axios.get(
+      `https://api.themoviedb.org/3/movie/${params.id}/credits?api_key=ff0709cbbd6905ad7bfb14c0730e0007&language=ar`
+    );
+    console.log(data.cast);
+    setmoviesCast(data.cast);
   }
   useEffect(() => {
     getMovieDetails();
+    getCast();
   }, []);
 
   return (
@@ -58,6 +66,32 @@ export default function Moviedetailes() {
           </a>
         </div>
       </div>
+      {moviesCast.length >= 1 ? (
+        <div className="w-[80%] mx-auto mt-10">
+          <h2 className="text-3xl font-bold mb-5 text-center">طاقم التمثيل</h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {moviesCast.slice(0, 10).map((actor) => (
+              <div
+                key={actor.id}
+                className="bg-white rounded-xl shadow p-3 text-center"
+              >
+                <img
+                  src={
+                    actor.profile_path ? `https://image.tmdb.org/t/p/w300/${actor.profile_path}`:null
+                  }
+                  alt={actor.name}
+                  className="rounded-lg w-full h-48 object-cover"
+                />
+
+                <h3 className="text-lg font-semibold mt-2">{actor.name}</h3>
+
+                <p className="text-sm text-gray-500">{actor.character}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

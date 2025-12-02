@@ -20,8 +20,8 @@ export default function Paginaition() {
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         containerClassName="flex justify-center mt-10"
-        pageClassName="border border-gray-300 px-4 py-2 bg-white hover:bg-gray-100 text-gray-700"
-        previousClassName="border border-gray-300 px-4 py-2 bg-white hover:bg-gray-100 text-gray-700"
+        pageClassName="border border-gray-300 px-2 py-2 bg-white hover:bg-gray-100 text-gray-700"
+        previousClassName="border border-gray-300  py-2 bg-white hover:bg-gray-100 text-gray-700"
         nextClassName="border border-gray-300 px-4 py-2 bg-white hover:bg-gray-100 text-gray-700"
         breakClassName="border border-gray-300 px-4 py-2 bg-white text-gray-700"
         pageLinkClassName="cursor-pointer"

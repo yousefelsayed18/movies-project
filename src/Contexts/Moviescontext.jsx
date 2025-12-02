@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export let Moviescontext = createContext();
@@ -41,8 +41,10 @@ export default function MoviescontextProvider(props) {
     settotalPages(data.total_pages);
   }
 
+
+
   return (
-    <Moviescontext.Provider value={{ movies, totalPages, getAllMovies, searchByName, getPage }}>
+    <Moviescontext.Provider value={{ movies, totalPages, getAllMovies, searchByName, getPage  }}>
       {props.children}
     </Moviescontext.Provider>
   );
